@@ -1,0 +1,26 @@
+<p ng-show="error">{{error.message}}</p>
+<!--{{user | json }} -->
+  <h2>{{user.name}}</h2>
+  <p><img ng-src="{{user.avatar_url}}" alt="{{user.name}}" style="max-width: 100%;" /></p>
+  <form>
+  <label for="sortOrder">Order:</label>
+  <select ng-model="repoSortOrder" name="sortOrder" id="sortOrder">
+    <option value="+name">Name</option>
+    <option value="-stargazer_count">Stars</option>
+    <option value="+language">Language</option>
+  </select>
+  </form>
+  <table>
+    <thead>
+      <th>Name</th>
+      <th>Stars</th>
+      <th>Language</th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="repo in repos | orderBy: repoSortOrder">
+        <td>{{repo.name}}</td>
+        <td>{{repo.stargazers_count | number}}</td>
+        <td>{{repo.language}}</td>
+      </tr>
+    </tbody>
+  </table>
