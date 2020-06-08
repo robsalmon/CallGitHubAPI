@@ -1,11 +1,11 @@
 (function() {
 var app = angular.module('githubProfileViewer', []);
 
-var MainController =  function($scope, $http, $interval, $log, $anchorScroll, $location) {
+var MainController =  function($scope, github, $interval, $log, $anchorScroll, $location) {
   
-var onUserComplete = function(response) {
-  $scope.user = response.data;
-  $http.get($scope.user.repos_url)
+var onUserComplete = function(data) {
+  $scope.user = data;
+  github.getRepos($scope.user)
   .then(onRepos, onError);
 }; 
 
@@ -13,8 +13,8 @@ var onError = function(reason) {
   $scope.error = "Could not fetch the user";
 };
 
-var onRepos = function(response) {
-$scope.repos = response.data;
+var onRepos = function(data) {
+$scope.repos = data;
 $location.hash("userDetails");
 $anchorScroll();
 };
@@ -36,7 +36,7 @@ var startCountdown = function() {
 
 $scope.search = function(username) {
   $log.info("Searching for " + username);
-  $http.get("https://api.github.com/users/" + username)
+ github.getUser(username)
   .then(onUserComplete, onError);
 
   if (countdownInterval) {
