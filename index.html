@@ -8,24 +8,16 @@
     <script>document.write('<base href="' + document.location + '" />');</script>
     <link rel="stylesheet" href="style.css" />
     <script data-require="angular.js@1.5.x" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.11/angular.min.js" data-semver="1.5.11"></script>
+    <script data-require="angular-route@*" src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.11/angular-route.js"></script>
     <script src="app.js"></script>
+    <script src="MainController.js"></script>
+    <script src="UserController.js"></script>
     <script src="github.js"></script>
   </head>
 
-  <body ng-controller="MainController">
-    <h1>{{message}}</h1>
-    <div>{{error}}</div>
-    
-<nav>
-    {{countdown}}
-    <form name="searchUser" ng-submit="search(username)">
-<input type="search" name="search" required placeholder="Username to find" ng-model="username" />
-<input type="submit" value="Search" />
-    </form>
-    </nav>
-    <article ng-include="'userdetails.html'" ng-show="user" id="userDetails">
-
-    </article>
+  <body>
+    <h1>Github profile viewer</h1>
+    <div ng-view></div>
   </body>
 
 </html>
