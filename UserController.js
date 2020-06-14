@@ -10,7 +10,7 @@
     }; 
     
     var onError = function(reason) {
-      $scope.error = "Could not fetch the user";
+      $scope.error = reason;
     };
     
     var onRepos = function(data) {
@@ -19,7 +19,7 @@
     
     $scope.username = $routeParams.username;
     $scope.repoSortOrder = "-stargazers_count";
-    github.getUser($scope.username).then(onUserComplete, onError)
+    github.getUser($scope.username).then(onUserComplete, onError);
     };
     
     app.controller("UserController", UserController);

@@ -1,0 +1,17 @@
+<p ng-show="error">{{error}}</p>
+<h2>{{repo.name}}</h2>
+<p>Issues: {{repo.open_issues_count}}</p>
+<h3>Contributors</h3>
+<pre>
+{{contributors || json}}
+</pre>
+<ul>
+    <li ng-repeat="contributor in contributors">
+        <img ng-src="{{contributor.avatar_url}}" alt="{{contributor.name}}" />
+        {{contributor.login}}</li>
+</ul>
+<pre>
+    {{repo || json}}
+</pre>
+<a href="#/main">Back to search</a>
+<a href="#/user/{{repo.owner.login}}">Back to {{repo.owner.login}} details</a>
